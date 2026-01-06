@@ -1,9 +1,12 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
 
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.impute import SimpleImputer
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(page_title="Loan Prediction", layout="wide")
@@ -11,10 +14,10 @@ st.title("🏦 Loan Approval Prediction – ML Model Comparison")
 
 # ---------------- LOAD MODELS ----------------
 models = {
-    "Logistic Regression": joblib.load("saved_models/logistic.pkl"),
-    "Decision Tree": joblib.load("saved_models/decision_tree.pkl"),
-    "Random Forest": joblib.load("saved_models/random_forest.pkl"),
-    "XGBoost (Best)": joblib.load("saved_models/xgboost.pkl"),
+    "Logistic Regression": joblib.load(os.path.join(BASE_DIR, "saved_models", "logistic.pkl")),
+    "Decision Tree": joblib.load(os.path.join(BASE_DIR, "saved_models", "decision_tree.pkl")),
+    "Random Forest": joblib.load(os.path.join(BASE_DIR, "saved_models", "random_forest.pkl")),
+    "XGBoost (Best)": joblib.load(os.path.join(BASE_DIR, "saved_models", "xgboost.pkl")),
 }
 
 model_name = st.selectbox("Select Model", list(models.keys()))
