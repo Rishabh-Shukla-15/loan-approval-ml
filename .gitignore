@@ -1,6 +1,4 @@
 data/
-saved_models/
-*.pkl
 __pycache__/
 .env
 __pycache__/
